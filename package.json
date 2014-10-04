@@ -1,14 +1,21 @@
 {
   "name": "broccoli-peek",
   "version": "0.0.1",
-  "description": "Allows the user of a Broccoli plugin to inspect that plugins tmp directory",
+  "description": "Allows you to inspect a broccoli tree's directory programmatically",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chris Santero",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csantero/broccoli-peek"
+  },
   "license": "MIT",
   "dependencies": {
     "symlink-or-copy": "^1.0.0"
+  },
+  "keywords": {
+    "broccoli-plugin"
   }
 }
