@@ -16,6 +16,9 @@ function PeekPlugin (inputTree, peekHandler, cleanupHandler) {
 PeekPlugin.prototype.read = function (readTree) {
   var self = this;
   return readTree(this.inputTree).then(function (srcDir) {
+    if (self.destDirName) {
+      fs.unlinkSync(self.destDirName);
+    }
     self.destDirName = './tmp/peek_at-' + path.basename(srcDir);
     symlinkOrCopySync(srcDir, self.destDirName);
     if (self.peekHandler) {
@@ -26,8 +29,11 @@ PeekPlugin.prototype.read = function (readTree) {
 };
 
 PeekPlugin.prototype.cleanup = function () {
-  if (this.cleanupHandler) {
-    this.cleanupHandler(this.destDirName, this.peekContext);
+  try {
+    if (this.cleanupHandler) {
+      this.cleanupHandler(this.destDirName, this.peekContext);
+    }
+  } finally {
+    fs.unlinkSync(this.destDirName);
   }
-  fs.unlinkSync(this.destDirName);
 };
