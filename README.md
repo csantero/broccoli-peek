@@ -11,7 +11,7 @@ npm install --save broccoli-peek
 
 ## Usage
 
-### `peek(sourceTree, peekHandler, cleanupHandler)`
+### `peek(sourceTree, peekHandler)`
 
 * `sourceTree` is the tree you wish to inspect.
 
